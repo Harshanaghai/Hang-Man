@@ -17,9 +17,11 @@ const hangmanImages = [
 function chooseWord() {
     chosenWord = words[Math.floor(Math.random() * words.length)];
     guessedWord = [];
+    incorrectLetters = []; // Reset incorrect letters array
     for (let i = 0; i < chosenWord.length; i++) {
         guessedWord.push("_");
     }
+    updateHangmanImage(); // Reset hangman image
     displayWord();
 }
 
@@ -38,9 +40,9 @@ function checkLetter(letter) {
     }
     if (!found) {
         incorrectLetters.push(letter); // Add incorrect letter to array
-        updateHangmanImage();
-        updateIncorrectLettersDisplay(); // Update incorrect letters display
     }
+    updateHangmanImage(); // Update hangman image regardless of correct or incorrect guess
+    updateIncorrectLettersDisplay(); // Update incorrect letters display
     displayWord();
     checkWinOrLoss();
 }
@@ -82,3 +84,4 @@ function setupLetterButtons() {
 
 chooseWord();
 setupLetterButtons();
+
